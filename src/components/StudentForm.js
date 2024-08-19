@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { generateClient } from 'aws-amplify/api';
-import { createStudentRecord } from '../graphql/mutations';
 
-const API = generateClient();
-
-const StudentForm = () => {
+const StudentForm = ({ onSubmit }) => {
   const [studentID, setStudentID] = useState('');
   const [name, setName] = useState('');
   const [destination, setDestination] = useState('');
@@ -21,17 +17,13 @@ const StudentForm = () => {
       TeacherID: 'TeacherIDPlaceholder', // Replace with actual TeacherID
     };
 
-    console.log(studentRecord);
+    // Call the onSubmit function passed as a prop
+    onSubmit(studentRecord);
 
-    try {
-      await API.graphql({
-        query: createStudentRecord,
-        variables: { input: studentRecord },
-      });
-      alert('Student record created successfully');
-    } catch (error) {
-      console.error('Error creating student record:', error);
-    }
+    // Optionally reset the form fields after submission
+    setStudentID('');
+    setName('');
+    setDestination('');
   };
 
   return (
