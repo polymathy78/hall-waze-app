@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hallwazeapp-dev-7445a-authRole",
+      "UnauthRoleArn": "arn:aws:iam::881490095503:role/amplify-hallwazeapp-dev-7445a-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::881490095503:role/amplify-hallwazeapp-dev-7445a-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hallwazeapp-dev-7445a-deployment",
+      "UnauthRoleName": "amplify-hallwazeapp-dev-7445a-unauthRole",
+      "StackName": "amplify-hallwazeapp-dev-7445a",
+      "StackId": "arn:aws:cloudformation:us-east-1:881490095503:stack/amplify-hallwazeapp-dev-7445a/c440fb10-5dc8-11ef-9dbf-12425bbcfcf7",
+      "AmplifyAppId": "d3cmbmw2key0y"
+    }
+  }
+}
