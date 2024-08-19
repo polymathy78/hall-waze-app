@@ -1,6 +1,6 @@
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import StudentForm from './components/StudentForm';
@@ -25,6 +25,11 @@ function App() {
     }
   };
 
+  // Use useEffect to call fetchRecords when the component mounts
+  useEffect(() => {
+    fetchRecords();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
   const handleReturn = async (id) => {
     try {
       const updatedRecord = {
@@ -44,7 +49,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Student Tracking System</h1>
+      <h1>Hall-Waze </h1>
       <StudentForm />
       <div className="student-records">
         {records.map((record) => (
