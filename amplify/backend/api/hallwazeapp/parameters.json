@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "hallwazeapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authhallwazeapp3761891637618916",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
