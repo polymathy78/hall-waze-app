@@ -11,6 +11,7 @@ import {
   createStudentRecord,
   updateStudentRecord,
 } from './graphql/mutations';
+import './App.css';
 
 Amplify.configure(awsExports);
 
