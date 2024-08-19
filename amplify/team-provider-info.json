@@ -10,6 +10,21 @@
       "StackName": "amplify-hallwazeapp-dev-7445a",
       "StackId": "arn:aws:cloudformation:us-east-1:881490095503:stack/amplify-hallwazeapp-dev-7445a/c440fb10-5dc8-11ef-9dbf-12425bbcfcf7",
       "AmplifyAppId": "d3cmbmw2key0y"
+    },
+    "categories": {
+      "auth": {
+        "hallwazeapp3761891637618916": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "AdminQueriesfc9591b1": {
+          "deploymentBucketName": "amplify-hallwazeapp-dev-7445a-deployment",
+          "s3Key": "amplify-builds/AdminQueriesfc9591b1-303943736e794d517054-build.zip"
+        }
+      },
+      "api": {
+        "AdminQueries": {}
+      }
     }
   }
 }
