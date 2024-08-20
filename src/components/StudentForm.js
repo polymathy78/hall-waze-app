@@ -5,6 +5,16 @@ const StudentForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [destination, setDestination] = useState('');
 
+  // Array of destinations
+  const destinations = [
+    'Library',
+    'Gym',
+    'Cafeteria',
+    'Auditorium',
+    'Playground',
+    'Laboratory',
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,9 +60,11 @@ const StudentForm = ({ onSubmit }) => {
         <option value="" disabled>
           Select Destination
         </option>
-        <option value="Library">Library</option>
-        <option value="Gym">Gym</option>
-        <option value="Cafeteria">Cafeteria</option>
+        {destinations.map((dest, index) => (
+          <option key={index} value={dest}>
+            {dest}
+          </option>
+        ))}
       </select>
       <button type="submit">Submit</button>
     </form>
