@@ -108,8 +108,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hall-Waze </h1>
+      <img src="/hall-waze.png" alt="Logo" className="logo" />
       <StudentForm onSubmit={handleSubmit} />
+      <hr />
       <div className="student-records">
         {records.map((record) =>
           !record.ReturnTime ? (
