@@ -42,6 +42,41 @@ function App() {
 
   const handleSubmit = async (studentRecord) => {
     try {
+      // Fetch the latest record for this student
+      const variables = {
+        filter: { StudentID: { eq: studentRecord.StudentID } },
+      };
+      const result = await API.graphql({
+        query: listStudentRecords,
+        variables: variables,
+      });
+      const studentRecords = result.data.listStudentRecords.items;
+
+      if (studentRecords.length > 0) {
+        // Sort records by DepartureTime in descending order to get the most recent record
+        studentRecords.sort(
+          (a, b) =>
+            new Date(b.DepartureTime) - new Date(a.DepartureTime)
+        );
+        const latestRecord = studentRecords[0];
+        const currentTime = new Date();
+        const lastDepartureTime = new Date(
+          latestRecord.DepartureTime
+        );
+
+        // Check if the last submission was within the last hour
+        const timeDifference = currentTime - lastDepartureTime;
+        const oneHourInMilliseconds = 60 * 60 * 1000;
+
+        if (timeDifference < oneHourInMilliseconds) {
+          alert(
+            'You cannot make a new submission within an hour of your last submission.'
+          );
+          return; // Prevent submission
+        }
+      }
+
+      // Proceed with creating the record if no recent submission was found
       await API.graphql({
         query: createStudentRecord,
         variables: { input: studentRecord },
