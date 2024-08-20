@@ -6,7 +6,7 @@ import { generateClient } from 'aws-amplify/api';
 
 import StudentForm from './components/StudentForm';
 import StudentCard from './components/StudentCard';
-import { listStudentRecords } from './graphql/queries';
+import { listStudentRecords, listStudents } from './graphql/queries';
 import {
   createStudentRecord,
   updateStudentRecord,
@@ -19,7 +19,9 @@ const API = generateClient();
 
 function App() {
   const [records, setRecords] = useState([]);
+  const [students, setStudents] = useState([]);
 
+  // Fetch student records
   const fetchRecords = async () => {
     try {
       const result = await API.graphql({ query: listStudentRecords });
@@ -35,14 +37,23 @@ function App() {
     }
   };
 
-  // Use useEffect to call fetchRecords when the component mounts
+  // Fetch student names and IDs
+  const fetchStudents = async () => {
+    try {
+      const result = await API.graphql({ query: listStudents });
+      setStudents(result.data.listStudents.items);
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
+  };
+
   useEffect(() => {
     fetchRecords();
-  }, [records]); // Empty dependency array ensures this runs only once when the component mounts
+    fetchStudents(); // Fetch student names and IDs when the component mounts
+  }, []);
 
   const handleSubmit = async (studentRecord) => {
     try {
-      // Fetch the latest record for this student
       const variables = {
         filter: { StudentID: { eq: studentRecord.StudentID } },
       };
@@ -53,7 +64,6 @@ function App() {
       const studentRecords = result.data.listStudentRecords.items;
 
       if (studentRecords.length > 0) {
-        // Sort records by DepartureTime in descending order to get the most recent record
         studentRecords.sort(
           (a, b) =>
             new Date(b.DepartureTime) - new Date(a.DepartureTime)
@@ -64,7 +74,6 @@ function App() {
           latestRecord.DepartureTime
         );
 
-        // Check if the last submission was within the last hour
         const timeDifference = currentTime - lastDepartureTime;
         const oneHourInMilliseconds = 60 * 60 * 1000;
 
@@ -72,17 +81,16 @@ function App() {
           alert(
             'You cannot make a new submission within an hour of your last submission.'
           );
-          return; // Prevent submission
+          return;
         }
       }
 
-      // Proceed with creating the record if no recent submission was found
       await API.graphql({
         query: createStudentRecord,
         variables: { input: studentRecord },
       });
       alert('Student record created successfully');
-      fetchRecords(); // Re-fetch records after submission
+      fetchRecords();
     } catch (error) {
       console.error('Error creating student record:', error);
     }
@@ -99,8 +107,7 @@ function App() {
         variables: { input: updatedRecord },
       });
       alert('Student has returned.');
-
-      // fetchRecords();
+      fetchRecords();
     } catch (error) {
       console.error('Error updating student record:', error);
     }
@@ -109,7 +116,7 @@ function App() {
   return (
     <div className="App">
       <img src="/hall-waze.png" alt="Logo" className="logo" />
-      <StudentForm onSubmit={handleSubmit} />
+      <StudentForm onSubmit={handleSubmit} students={students} />
       <hr />
       <div className="student-records">
         {records.map((record) =>
