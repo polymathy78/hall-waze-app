@@ -9,6 +9,7 @@ export const createStudent = /* GraphQL */ `
     createStudent(input: $input, condition: $condition) {
       id
       name
+      grade
       createdAt
       updatedAt
       __typename
@@ -23,6 +24,7 @@ export const updateStudent = /* GraphQL */ `
     updateStudent(input: $input, condition: $condition) {
       id
       name
+      grade
       createdAt
       updatedAt
       __typename
@@ -35,6 +37,91 @@ export const deleteStudent = /* GraphQL */ `
     $condition: ModelStudentConditionInput
   ) {
     deleteStudent(input: $input, condition: $condition) {
+      id
+      name
+      grade
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createTeacher = /* GraphQL */ `
+  mutation CreateTeacher(
+    $input: CreateTeacherInput!
+    $condition: ModelTeacherConditionInput
+  ) {
+    createTeacher(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateTeacher = /* GraphQL */ `
+  mutation UpdateTeacher(
+    $input: UpdateTeacherInput!
+    $condition: ModelTeacherConditionInput
+  ) {
+    updateTeacher(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteTeacher = /* GraphQL */ `
+  mutation DeleteTeacher(
+    $input: DeleteTeacherInput!
+    $condition: ModelTeacherConditionInput
+  ) {
+    deleteTeacher(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createSchool = /* GraphQL */ `
+  mutation CreateSchool(
+    $input: CreateSchoolInput!
+    $condition: ModelSchoolConditionInput
+  ) {
+    createSchool(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateSchool = /* GraphQL */ `
+  mutation UpdateSchool(
+    $input: UpdateSchoolInput!
+    $condition: ModelSchoolConditionInput
+  ) {
+    updateSchool(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteSchool = /* GraphQL */ `
+  mutation DeleteSchool(
+    $input: DeleteSchoolInput!
+    $condition: ModelSchoolConditionInput
+  ) {
+    deleteSchool(input: $input, condition: $condition) {
       id
       name
       createdAt

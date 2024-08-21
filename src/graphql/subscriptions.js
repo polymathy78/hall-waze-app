@@ -6,6 +6,7 @@ export const onCreateStudent = /* GraphQL */ `
     onCreateStudent(filter: $filter) {
       id
       name
+      grade
       createdAt
       updatedAt
       __typename
@@ -17,6 +18,7 @@ export const onUpdateStudent = /* GraphQL */ `
     onUpdateStudent(filter: $filter) {
       id
       name
+      grade
       createdAt
       updatedAt
       __typename
@@ -26,6 +28,73 @@ export const onUpdateStudent = /* GraphQL */ `
 export const onDeleteStudent = /* GraphQL */ `
   subscription OnDeleteStudent($filter: ModelSubscriptionStudentFilterInput) {
     onDeleteStudent(filter: $filter) {
+      id
+      name
+      grade
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateTeacher = /* GraphQL */ `
+  subscription OnCreateTeacher($filter: ModelSubscriptionTeacherFilterInput) {
+    onCreateTeacher(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTeacher = /* GraphQL */ `
+  subscription OnUpdateTeacher($filter: ModelSubscriptionTeacherFilterInput) {
+    onUpdateTeacher(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTeacher = /* GraphQL */ `
+  subscription OnDeleteTeacher($filter: ModelSubscriptionTeacherFilterInput) {
+    onDeleteTeacher(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateSchool = /* GraphQL */ `
+  subscription OnCreateSchool($filter: ModelSubscriptionSchoolFilterInput) {
+    onCreateSchool(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateSchool = /* GraphQL */ `
+  subscription OnUpdateSchool($filter: ModelSubscriptionSchoolFilterInput) {
+    onUpdateSchool(filter: $filter) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteSchool = /* GraphQL */ `
+  subscription OnDeleteSchool($filter: ModelSubscriptionSchoolFilterInput) {
+    onDeleteSchool(filter: $filter) {
       id
       name
       createdAt

@@ -6,6 +6,7 @@ export const getStudent = /* GraphQL */ `
     getStudent(id: $id) {
       id
       name
+      grade
       createdAt
       updatedAt
       __typename
@@ -19,6 +20,67 @@ export const listStudents = /* GraphQL */ `
     $nextToken: String
   ) {
     listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        grade
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getTeacher = /* GraphQL */ `
+  query GetTeacher($id: ID!) {
+    getTeacher(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listTeachers = /* GraphQL */ `
+  query ListTeachers(
+    $filter: ModelTeacherFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTeachers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getSchool = /* GraphQL */ `
+  query GetSchool($id: ID!) {
+    getSchool(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listSchools = /* GraphQL */ `
+  query ListSchools(
+    $filter: ModelSchoolFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
