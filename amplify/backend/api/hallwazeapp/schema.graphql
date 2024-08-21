@@ -5,6 +5,21 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 type Student @model {
   id: ID!
   name: String!
+  grade: Number
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Teacher @model {
+  id: ID!
+  name: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type School @model {
+  id: ID!
+  name: String!
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -21,4 +36,3 @@ type StudentRecord @model {
   TeacherID: String!
   TeacherName: String
 }
- pie chart
