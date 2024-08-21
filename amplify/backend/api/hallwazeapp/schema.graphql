@@ -10,20 +10,6 @@ type Student @model {
   updatedAt: AWSDateTime
 }
 
-type Teacher @model {
-  id: ID!
-  name: String!
-  createdAt: AWSDateTime
-  updatedAt: AWSDateTime
-}
-
-type School @model {
-  id: ID!
-  name: String!
-  createdAt: AWSDateTime
-  updatedAt: AWSDateTime
-}
-
 type StudentRecord @model {
   id: ID!
   StudentID: String!
