@@ -3,9 +3,16 @@ import awsExports from './aws-exports';
 import React, { useState, useEffect } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { generateClient } from 'aws-amplify/api';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+} from 'react-router-dom'; // Use Routes instead of Switch
 
 import StudentForm from './components/StudentForm';
 import StudentCard from './components/StudentCard';
+import DataGraph from './components/DataGraph'; // New component for graphs
 import { listStudentRecords, listStudents } from './graphql/queries';
 import {
   createStudentRecord,
@@ -114,22 +121,54 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <img src="/hall-waze.png" alt="Logo" className="logo" />
-      <StudentForm onSubmit={handleSubmit} students={students} />
-      <hr />
-      <div className="student-records">
-        {records.map((record) =>
-          !record.ReturnTime ? (
-            <StudentCard
-              key={record.id}
-              record={record}
-              handleReturn={handleReturn}
-            />
-          ) : null
-        )}
+    <Router>
+      <div className="App">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/graphs">Graphs</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <img
+                  src="/hall-waze.png"
+                  alt="Logo"
+                  className="logo"
+                />
+                <StudentForm
+                  onSubmit={handleSubmit}
+                  students={students}
+                />
+                <hr />
+                <div className="student-records">
+                  {records.map((record) =>
+                    !record.ReturnTime ? (
+                      <StudentCard
+                        key={record.id}
+                        record={record}
+                        handleReturn={handleReturn}
+                      />
+                    ) : null
+                  )}
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/graphs"
+            element={<DataGraph records={records} />}
+          />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

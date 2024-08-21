@@ -21,3 +21,4 @@ type StudentRecord @model {
   TeacherID: String!
   TeacherName: String
 }
+ pie chart
