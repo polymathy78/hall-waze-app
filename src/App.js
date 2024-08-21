@@ -60,6 +60,8 @@ function App() {
   }, []);
 
   const handleSubmit = async (studentRecord) => {
+    const dingSound = new Audio('/sounds/ding.mp3'); // Path to the sound file
+
     try {
       const variables = {
         filter: { StudentID: { eq: studentRecord.StudentID } },
@@ -72,19 +74,17 @@ function App() {
 
       if (studentRecords.length > 0) {
         studentRecords.sort(
-          (a, b) =>
-            new Date(b.DepartureTime) - new Date(a.DepartureTime)
+          (a, b) => new Date(b.ReturnTime) - new Date(a.ReturnTime)
         );
         const latestRecord = studentRecords[0];
         const currentTime = new Date();
-        const lastDepartureTime = new Date(
-          latestRecord.DepartureTime
-        );
+        const lastReturnTime = new Date(latestRecord.ReturnTime);
 
-        const timeDifference = currentTime - lastDepartureTime;
+        const timeDifference = currentTime - lastReturnTime;
         const oneHourInMilliseconds = 60 * 60 * 1000;
 
         if (timeDifference < oneHourInMilliseconds) {
+          dingSound.play(); // Play the ding sound
           alert(
             'You cannot make a new submission within an hour of your last submission.'
           );
