@@ -123,8 +123,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-          <ul>
+        <nav className="navbar">
+          <img src="/hall-waze.png" alt="Logo" className="logo" />
+          <ul className="nav-links">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -134,15 +135,12 @@ function App() {
           </ul>
         </nav>
         <Routes>
+          {' '}
+          {/* Use Routes instead of Switch */}
           <Route
             path="/"
             element={
               <>
-                <img
-                  src="/hall-waze.png"
-                  alt="Logo"
-                  className="logo"
-                />
                 <StudentForm
                   onSubmit={handleSubmit}
                   students={students}
